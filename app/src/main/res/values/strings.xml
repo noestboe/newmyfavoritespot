@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">My favorite spots</string>
+
+    <!-- Cien montaditos -->
+    <string name="cienMontaditos">Cien Montaditos</string>
+    <string name="cienMontaditosType">Type: Bar</string>
+    <string name="cienMontaditosDesc">Cien Montaditos is a lively bar known for its variety of Spanish-style sandwiches and affordable drinks.</string>
+
+    <!-- Museo Prado -->
+    <string name="museoPrado">Museo del Prado</string>
+    <string name="museoPradoType">Type: Museum</string>
+    <string name="museoPradoDesc">The Museo del Prado is Spain\'s premier art museum, featuring an extensive collection of European masterpieces.</string>
+
+    <!-- Retiro -->
+    <string name="retiro">Retiro Park</string>
+    <string name="retiroType">Type: Park</string>
+    <string name="retiroDesc">Retiro Park is a sprawling green space in the heart of Madrid, offering tranquil lakes, manicured gardens, and cultural events.</string>
+
+    <!-- Plaza Espana -->
+    <string name="plazaEspana">Plaza de España</string>
+    <string name="plazaEspanaType">Type: Plaza</string>
+    <string name="plazaEspanaDesc">Plaza de España is a bustling square adorned with majestic statues and a central fountain, surrounded by historic buildings.</string>
+
+    <!-- Riu Rooftop -->
+    <string name="riuRooftop">Riu Plaza Rooftop</string>
+    <string name="riuRooftopType">Type: Viewpoint</string>
+    <string name="riuRooftopDesc">Riu Plaza Rooftop offers breathtaking panoramic views of Madrid\'s skyline, making it the perfect spot to enjoy sunset cocktails.</string>
+
+    <!-- Royal Palace -->
+    <string name="royalPalace">Royal Palace of Madrid</string>
+    <string name="royalPalaceType">Type: Palace</string>
+    <string name="royalPalaceDesc">The Royal Palace of Madrid is a grandiose architectural marvel and the official residence of the Spanish royal family.</string>
+
+    <!-- Kapital -->
+    <string name="kapital">Kapital Club</string>
+    <string name="kapitalType">Type: Club</string>
+    <string name="kapitalDesc">Kapital Club is a renowned nightlife destination known for its multiple floors of music, diverse crowds, and energetic atmosphere.</string>
+    <string name="title_activity_add_spot">AddSpotActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+</resources>
