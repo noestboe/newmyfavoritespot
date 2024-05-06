@@ -1,76 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
+
     android:orientation="vertical"
-    tools:context=".DetailedActivitySpot">
+    tools:context=".AddSpotPage">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/detailName"
-        android:layout_marginTop="14dp"
-        android:text="Name of spot"
-        android:textSize="24sp"
-        android:textColor="@color/lavender"
-        android:textStyle="bold"
-        android:layout_gravity="center"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Raiting:"
-        android:textColor="@color/lavender"
-        android:textStyle="bold"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        android:textSize="18sp"/>
-
-    <TextView
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/name_of_spot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="time"
-        android:layout_marginStart="10dp"
-        android:textSize="16sp"
-        android:id="@+id/detailTime"/>
+        android:hint="Name of spottestestes"
+        />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"></Space>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/type_of_spot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Type of spot"
+        />
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"></Space>
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/rating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Rating"
+        />
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"></Space>
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Description"
+        />
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"></Space>
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="City"
+        />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"></Space>
+
+    <Button
+        android:id="@+id/addLocationButton"
+        android:text="Add location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></Button>
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"></Space>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Type of spot:"
+        android:id="@+id/locationName"
+        android:text="No location selected"
         android:textColor="@color/lavender"
-        android:textStyle="bold"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:textSize="18sp"/>
+        />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cienMontaditosType"
-        android:layout_marginStart="10dp"
-        android:textSize="16sp"
-        android:id="@+id/detailIngredients"/>
-
-    <TextView
+    <Space
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Description:"
-        android:textColor="@color/lavender"
-        android:textStyle="bold"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:textSize="18sp"/>
+        android:layout_height="10dp"></Space>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cienMontaditosDesc"
-        android:layout_marginStart="10dp"
-        android:textSize="16sp"
-        android:id="@+id/detailDesc"/>
+    <Button
+        android:id="@+id/createSpotButton"
+        android:text="Create a new spot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></Button>
+
 
 </LinearLayout>

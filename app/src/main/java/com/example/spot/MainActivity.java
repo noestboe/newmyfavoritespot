@@ -2,9 +2,12 @@ package com.example.spot;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,44 +16,61 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.spot.databinding.ActivityMainBinding;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
     ListAdapter listAdapter;
-    ArrayList<ListData> dataArrayList = new ArrayList<>();
-    ListData listData;
+    private FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        int[] typeList = {R.string.cienMontaditosType, R.string.museoPradoType, R.string.retiroType, R.string.plazaEspanaType, R.string.riuRooftopType, R.string.royalPalaceType, R.string.kapitalType};
-        int[] descList = {R.string.cienMontaditosDesc, R.string.museoPradoDesc, R.string.retiroDesc, R.string.plazaEspanaDesc, R.string.riuRooftopDesc, R.string.royalPalaceDesc, R.string.kapitalDesc};
+        ListView listview = findViewById(R.id.listview);
+        db = FirebaseFirestore.getInstance();
 
-        String[] nameList = {"Cien Montaditos", "Museo Prado", "Retiro", "Plaza espana", "Riu rooftop","Royal Palace", "Kapital"};
-        String[] ratingList = {"7/10", "7/10", "9/10","6/10", "9/10", "7/10", "7/10"};
-        String [] cityList = {"Madrid", "Madrid", "Madrid", "Madrid", "Madrid", "Madrid", "Madrid"};
 
-        for (int i = 0; i < nameList.length; i++){
-            listData = new ListData(nameList[i], ratingList[i], cityList[i], typeList[i], descList[i]);
-            dataArrayList.add(listData);
-        }
-        listAdapter = new ListAdapter(MainActivity.this, dataArrayList);
-        binding.listview.setAdapter(listAdapter);
+        db.collection("spots").get().addOnCompleteListener(task -> {
+            ArrayList<ListData> spotList = new ArrayList<>();
+            for (QueryDocumentSnapshot document : task.getResult()) {
+                String id = document.getId();
+                String nameOfSpot = document.getData().get("name_of_spot").toString();
+                String typeOfSpot = document.getData().get("type_of_spot").toString();
+                String rating = document.getData().get("rating").toString();
+                String city = document.getData().get("city").toString();
+                String description = document.getData().get("description").toString();
+                double latitude = (double) document.getData().get("latitude");
+                double longitude = (double) document.getData().get("longitude");
+                spotList.add(new ListData(id, nameOfSpot, rating, city, typeOfSpot, description, latitude, longitude));
+            }
+            listAdapter = new ListAdapter(MainActivity.this, spotList);
+            binding.listview.setAdapter(listAdapter);
+        });
         binding.listview.setClickable(true);
+
+
         binding.listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                ListData selectedItem = (ListData) parent.getItemAtPosition(position);
+
                 Intent intent = new Intent(MainActivity.this, DetailedActivitySpot.class);
-                intent.putExtra("name", nameList[i]);
-                intent.putExtra("raiting", ratingList[i]);
-                intent.putExtra("city", cityList[i]);
-                intent.putExtra("type_spot", typeList[i]);
-                intent.putExtra("desc", descList[i]);
+                intent.putExtra("id", selectedItem.id);
+                intent.putExtra("name", selectedItem.name);
+                intent.putExtra("raiting", selectedItem.raiting);
+                intent.putExtra("city", selectedItem.city);
+                intent.putExtra("type_spot", selectedItem.spot_type);
+                intent.putExtra("desc", selectedItem.desc);
+                intent.putExtra("latitude", selectedItem.latitude);
+                intent.putExtra("longitude", selectedItem.longitude);
                 startActivity(intent);
             }
         });
