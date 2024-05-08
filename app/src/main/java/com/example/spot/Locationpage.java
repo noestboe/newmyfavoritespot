@@ -70,7 +70,7 @@ public class Locationpage extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap map) {
         map.setOnPoiClickListener(this);
         float zoomLevel = map.getMaxZoomLevel() - 5;
-        LatLng uc3m = new LatLng(40.332690215919904, -3.765110001822394); // UC3M Leganés
+        LatLng uc3m = new LatLng(40.416729, -3.703339); // Puerta del sol
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(uc3m, zoomLevel));
     }
 
@@ -81,8 +81,7 @@ public class Locationpage extends AppCompatActivity implements OnMapReadyCallbac
         longitude = poi.latLng.longitude;
         locationName = poi.name;
 
-        Toast.makeText(this, "Clicked: " + poi.name + "\nPlace ID:" + poi.placeId + "\nLatitude:" +
-                        poi.latLng.latitude + " Longitude:" + poi.latLng.longitude, Toast.LENGTH_SHORT)
+        Toast.makeText(this, "Selected SPOT: " + poi.name, Toast.LENGTH_SHORT)
                 .show();
     }
 }

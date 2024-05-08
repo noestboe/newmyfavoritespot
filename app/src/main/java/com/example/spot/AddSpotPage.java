@@ -75,6 +75,7 @@ public class AddSpotPage extends AppCompatActivity {
         nameOfSpotEditText = findViewById(R.id.name_of_spot);
         typeOfSpotEditText = findViewById(R.id.type_of_spot);
         ratingEditText = findViewById(R.id.rating);
+        Log.d("this is raiting", ratingEditText.getText().toString());
         descriptionEditText = findViewById(R.id.description);
         cityEditText = findViewById(R.id.city);
         createSpotButton = findViewById(R.id.createSpotButton);

@@ -26,7 +26,7 @@ public class ListAdapter extends ArrayAdapter<ListData> {
         TextView listName = view.findViewById(R.id.listName);
         TextView listTime = view.findViewById(R.id.listTime);
         listName.setText(listData.name);
-        listTime.setText(listData.raiting);
+        listTime.setText(listData.raiting + "/10");
         return view;
     }
 }

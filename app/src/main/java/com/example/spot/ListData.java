@@ -13,4 +13,8 @@ public class ListData {
         this.latitude = latitude;
         this.longitude = longitude;
     }
+
+    public String getRating() {
+        return this.raiting;
+    }
 }

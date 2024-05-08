@@ -50,7 +50,6 @@ public class DetailedActivitySpot extends AppCompatActivity {
         viewLocationButton = findViewById(R.id.viewLocationButton);
         viewLocationButton.setOnClickListener(v -> goToMap());
         deleteSpotButton.setOnClickListener(v -> deleteSpot());
-
     }
 
     private void deleteSpot() {

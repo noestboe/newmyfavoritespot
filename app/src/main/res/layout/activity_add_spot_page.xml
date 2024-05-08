@@ -14,7 +14,7 @@
         android:id="@+id/name_of_spot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name of spottestestes"
+        android:hint="Name of spot"
         />
 
     <Space
@@ -30,12 +30,14 @@
     <Space
         android:layout_width="wrap_content"
         android:layout_height="10dp"></Space>
+
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/rating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Rating"
         />
+
     <Space
         android:layout_width="wrap_content"
         android:layout_height="10dp"></Space>

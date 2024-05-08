@@ -20,23 +20,19 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
     ListAdapter listAdapter;
+    private boolean shouldSortByRating = false;
     private FirebaseFirestore db;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
 
-        ListView listview = findViewById(R.id.listview);
+    private void getDataFromDB() {
         db = FirebaseFirestore.getInstance();
-
-
         db.collection("spots").get().addOnCompleteListener(task -> {
             ArrayList<ListData> spotList = new ArrayList<>();
             for (QueryDocumentSnapshot document : task.getResult()) {
@@ -48,7 +44,22 @@ public class MainActivity extends AppCompatActivity {
                 String description = document.getData().get("description").toString();
                 double latitude = (double) document.getData().get("latitude");
                 double longitude = (double) document.getData().get("longitude");
+                Log.d("name of spot", nameOfSpot);
                 spotList.add(new ListData(id, nameOfSpot, rating, city, typeOfSpot, description, latitude, longitude));
+            }
+
+            // sort the list, if the sort button is pressed
+            if (this.shouldSortByRating) {
+                Comparator<ListData> ratingComparator = new Comparator<ListData>() {
+                    @Override
+                    public int compare(ListData spot1, ListData spot2) {
+                        // Convert rating strings to numbers for comparison
+                        int rating1 = Integer.parseInt(spot1.getRating());
+                        int rating2 = Integer.parseInt(spot2.getRating());
+                        return Integer.compare(rating2, rating1);
+                    }
+                };
+                Collections.sort(spotList, ratingComparator);
             }
             listAdapter = new ListAdapter(MainActivity.this, spotList);
             binding.listview.setAdapter(listAdapter);
@@ -74,8 +85,25 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        getDataFromDB();
 
         Button btn = (Button)findViewById(R.id.add_spot_button);
+        Button sortbtn = (Button) findViewById(R.id.sort_button);
+
+        sortbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.this.shouldSortByRating = !MainActivity.this.shouldSortByRating;
+                getDataFromDB();
+            }
+        });
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
